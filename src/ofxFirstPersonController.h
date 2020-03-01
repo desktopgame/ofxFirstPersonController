@@ -38,6 +38,11 @@ public:
 	glm::vec3 upVector;
 	glm::vec2 rotationAxis;
 
+	int forwardKey;
+	int backwardKey;
+	int leftKey;
+	int rightKey;
+
 	void pushMatrix() const;
 	void popMatrix() const;
 

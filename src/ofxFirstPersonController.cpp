@@ -34,6 +34,7 @@ Controller::Controller()
  :  // public
 	transform(), moveSpeed(1.0f), rotationSpeed(0.6f),
     fov(30), aspectRatio(1280.0f / 720.0f), nearPlane(1.0f), farPlane(1000.0f), upVector(0,-1,0), rotationAxis(1,-1),
+	forwardKey('w'), backwardKey('s'), leftKey('a'), rightKey('d'),
 	// private
 	wasdEnabled(true), isSprint(true), wasdAxis(0,0),
 	oldMousePos(-1, -1), diffMousePos(), mouseEnabled(false) 
@@ -115,36 +116,28 @@ void Controller::update(ofEventArgs & e) {
 }
 void Controller::keyPressed(ofKeyEventArgs & e) {
 	// check move key
-	if (e.key == 'w') {
+	if (e.key == this->forwardKey) {
 		this->wasdAxis.y = 1;
-		std::cout << "press " <<  'w' << std::endl;
-	} else if (e.key == 's') {
+	} else if (e.key == this->backwardKey) {
 		this->wasdAxis.y = -1;
-		std::cout << "press " << 's' << std::endl;
 	}
-	if (e.key == 'a') {
+	if (e.key == this->leftKey) {
 		this->wasdAxis.x = -1;
-		std::cout << "press " << 'a' << std::endl;
-	} else if (e.key == 'd') {
+	} else if (e.key == this->rightKey) {
 		this->wasdAxis.x = 1;
-		std::cout << "press " << 'd' << std::endl;
 	}
 }
 void Controller::keyReleased(ofKeyEventArgs & e) {
 	// check move key
-	if (e.key == 'w' && wasdAxis.y == 1) {
+	if (e.key == this->forwardKey && wasdAxis.y == 1) {
 		this->wasdAxis.y = 0;
-		std::cout << "release " << 'w' << std::endl;
-	} else if (e.key == 's' && wasdAxis.y == -1) {
+	} else if (e.key == this->backwardKey && wasdAxis.y == -1) {
 		this->wasdAxis.y = 0;
-		std::cout << "release " << 's' << std::endl;
 	}
-	if (e.key == 'a' && wasdAxis.x == -1) {
+	if (e.key == this->leftKey && wasdAxis.x == -1) {
 		this->wasdAxis.x = 0;
-		std::cout << "release " << 'a' << std::endl;
-	} else if (e.key == 'd' && wasdAxis.x == 1) {
+	} else if (e.key == this->backwardKey && wasdAxis.x == 1) {
 		this->wasdAxis.x = 0;
-		std::cout << "release " << 'd' << std::endl;
 	}
 }
 void Controller::mouseMoved(ofMouseEventArgs & e) {
