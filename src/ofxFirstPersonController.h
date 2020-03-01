@@ -74,5 +74,8 @@ private:
 	glm::vec2 oldMousePos;
 	glm::vec2 diffMousePos;
 };
+
+void lockMouseCursor();
+void unlockMouseCursor();
 }
 #endif

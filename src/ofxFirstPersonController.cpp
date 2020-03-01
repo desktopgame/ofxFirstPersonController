@@ -5,6 +5,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <ofMatrixStack.h>
 #include <ofGraphics.h>
+#include <ofAppGLFWWindow.h>
+#include <ofAppRunner.h>
+#include <GLFW/glfw3.h>
 
 namespace ofxFirstPersonController {
 // Key
@@ -144,7 +147,7 @@ void Controller::keyReleased(ofKeyEventArgs & e) {
 	}
 	if (e.key == this->leftKey.keycode && wasdAxis.x == -1 && this->leftKey.enabled) {
 		this->wasdAxis.x = 0;
-	} else if (e.key == this->backwardKey.keycode && wasdAxis.x == 1 && this->backwardKey.enabled) {
+	} else if (e.key == this->rightKey.keycode && wasdAxis.x == 1 && this->rightKey.enabled) {
 		this->wasdAxis.x = 0;
 	}
 }
@@ -166,5 +169,14 @@ void Controller::mouseMoved(ofMouseEventArgs & e) {
 	}
 }
 void Controller::mouseDragged(ofMouseEventArgs & e) {
+}
+
+void lockMouseCursor() {
+	ofAppGLFWWindow * glfwWindow = (ofAppGLFWWindow*)ofGetWindowPtr();
+	glfwSetInputMode(glfwWindow->getGLFWWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+}
+void unlockMouseCursor() {
+	ofAppGLFWWindow * glfwWindow = (ofAppGLFWWindow*)ofGetWindowPtr();
+	glfwSetInputMode(glfwWindow->getGLFWWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 }
