@@ -52,6 +52,9 @@ public:
 	Key leftKey;
 	Key rightKey;
 
+	Key downKey;
+	Key upKey;
+
 	void pushMatrix() const;
 	void popMatrix() const;
 

@@ -37,7 +37,7 @@ Controller::Controller()
  :  // public
 	transform(), moveSpeed(1.0f), rotationSpeed(0.6f),
     fov(30), aspectRatio(1280.0f / 720.0f), nearPlane(1.0f), farPlane(1000.0f), upVector(0,-1,0), rotationAxis(1,-1),
-	forwardKey('w'), backwardKey('s'), leftKey('a'), rightKey('d'),
+	forwardKey('w'), backwardKey('s'), leftKey('a'), rightKey('d'),downKey(ofKey::OF_KEY_LEFT_SHIFT), upKey(32 /* space key*/),
 	// private
 	wasdEnabled(true), isSprint(true), wasdAxis(0,0),
 	oldMousePos(-1, -1), diffMousePos(), mouseEnabled(false) 
@@ -128,6 +128,11 @@ void Controller::keyPressed(ofKeyEventArgs & e) {
 		this->wasdAxis.x = -1;
 	} else if (e.key == this->rightKey.keycode && this->rightKey.enabled) {
 		this->wasdAxis.x = 1;
+	}
+	if (e.key == this->downKey.keycode && this->downKey.enabled) {
+		this->transform.position.y += moveSpeed * upVector.y * -1;
+	} else if (e.key == this->upKey.keycode && this->upKey.enabled) {
+		this->transform.position.y += moveSpeed * upVector.y;
 	}
 }
 void Controller::keyReleased(ofKeyEventArgs & e) {
