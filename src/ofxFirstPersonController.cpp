@@ -38,9 +38,9 @@ Controller::Controller()
 	transform(), moveSpeed(1.0f), rotationSpeed(0.6f),
     fov(30), aspectRatio(1280.0f / 720.0f), nearPlane(1.0f), farPlane(1000.0f), upVector(0,-1,0), rotationAxis(1,-1),
 	forwardKey('w'), backwardKey('s'), leftKey('a'), rightKey('d'),downKey(ofKey::OF_KEY_LEFT_SHIFT), upKey(32 /* space key*/),
+	mouseEnabled(true),
 	// private
-	wasdEnabled(true), isSprint(true), wasdAxis(0,0),
-	oldMousePos(-1, -1), diffMousePos(), mouseEnabled(false) 
+	wasdAxis(0,0), oldMousePos(-1, -1), diffMousePos()
 {
 	auto &events = ofEvents();
 	ofAddListener(events.update, this, &Controller::update, OF_EVENT_ORDER_BEFORE_APP);
@@ -149,6 +149,9 @@ void Controller::keyReleased(ofKeyEventArgs & e) {
 	}
 }
 void Controller::mouseMoved(ofMouseEventArgs & e) {
+	if (!this->mouseEnabled) {
+		return;
+	}
 	diffMousePos.x = diffMousePos.y = 0;
 	double dmx = e.x;
 	double dmy = e.y;

@@ -54,6 +54,7 @@ public:
 
 	Key downKey;
 	Key upKey;
+	bool mouseEnabled;
 
 	void pushMatrix() const;
 	void popMatrix() const;
@@ -68,11 +69,8 @@ protected:
 	void mouseMoved(ofMouseEventArgs& e);
 	void mouseDragged(ofMouseEventArgs& e);
 private:
-	bool wasdEnabled;
-	bool isSprint;
 	glm::ivec2 wasdAxis;
 
-	bool mouseEnabled;
 	glm::vec2 oldMousePos;
 	glm::vec2 diffMousePos;
 };
