@@ -6,7 +6,8 @@ ofApp::ofApp() : fpsCon() {
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+	ofxFirstPersonController::lockMouseCursor();
+	this->cursor = true;
 }
 
 //--------------------------------------------------------------
@@ -23,7 +24,15 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 'e') {
+		if (this->cursor) {
+			ofxFirstPersonController::unlockMouseCursor();
+		} else {
+			ofxFirstPersonController::lockMouseCursor();
+		}
+		this->cursor = !this->cursor;
+		fpsCon.mouseEnabled = this->cursor;
+	}
 }
 
 //--------------------------------------------------------------
