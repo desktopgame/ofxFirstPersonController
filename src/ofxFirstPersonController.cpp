@@ -7,6 +7,9 @@
 #include <ofGraphics.h>
 
 namespace ofxFirstPersonController {
+// Key
+Key::Key(int keycode) : keycode(keycode), enabled(true) {
+}
 // Transform
 	Transform::Transform() : position(), scale(1,1,1), rotation() {
 }
@@ -116,27 +119,27 @@ void Controller::update(ofEventArgs & e) {
 }
 void Controller::keyPressed(ofKeyEventArgs & e) {
 	// check move key
-	if (e.key == this->forwardKey) {
+	if (e.key == this->forwardKey.keycode && this->forwardKey.enabled) {
 		this->wasdAxis.y = 1;
-	} else if (e.key == this->backwardKey) {
+	} else if (e.key == this->backwardKey.keycode && this->backwardKey.enabled) {
 		this->wasdAxis.y = -1;
 	}
-	if (e.key == this->leftKey) {
+	if (e.key == this->leftKey.keycode && this->leftKey.enabled) {
 		this->wasdAxis.x = -1;
-	} else if (e.key == this->rightKey) {
+	} else if (e.key == this->rightKey.keycode && this->rightKey.enabled) {
 		this->wasdAxis.x = 1;
 	}
 }
 void Controller::keyReleased(ofKeyEventArgs & e) {
 	// check move key
-	if (e.key == this->forwardKey && wasdAxis.y == 1) {
+	if (e.key == this->forwardKey.keycode && wasdAxis.y == 1 && this->forwardKey.enabled) {
 		this->wasdAxis.y = 0;
-	} else if (e.key == this->backwardKey && wasdAxis.y == -1) {
+	} else if (e.key == this->backwardKey.keycode && wasdAxis.y == -1 && this->backwardKey.enabled) {
 		this->wasdAxis.y = 0;
 	}
-	if (e.key == this->leftKey && wasdAxis.x == -1) {
+	if (e.key == this->leftKey.keycode && wasdAxis.x == -1 && this->leftKey.enabled) {
 		this->wasdAxis.x = 0;
-	} else if (e.key == this->backwardKey && wasdAxis.x == 1) {
+	} else if (e.key == this->backwardKey.keycode && wasdAxis.x == 1 && this->backwardKey.enabled) {
 		this->wasdAxis.x = 0;
 	}
 }
